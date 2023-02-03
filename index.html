@@ -21,50 +21,56 @@
   </div>
 
   <form id="form" class="the-form">
-    <label for="first-name">FIRST NAME</label>
-    <input 
-      id="first-name"
-      type="text" 
-    />
-    <span id="first-name-error"> </span>
+
+    <div class="first__name">
+      <label for="first-name">FIRST NAME</label>
+      <input id="first-name" type="text"/>
+      <span id="first-name-error">.</span>
+    </div>
     
-    <label for="last-name">LAST NAME</label>
-    <input  
-      id="last-name"
-      type="text" />
-    <span id="last-name-error"></span>
+    <div class="last__name">
+      <label for="last-name">LAST NAME</label>
+      <input id="last-name" type="text" />
+      <span id="last-name-error">.</span>
+    </div>
+    
+    <div class="e__mail">
+      <label for="email">EMAIL</label>
+      <input id="email" type="text" />
+      <span id="email-error">.</span>
+    </div>
+    
+    <div class="phone__number">
+      <label for="phone">PHONE</label>
+      <input  
+        id="phone"
+        type="tel" />
+      <span id="phone-error">.</span>
+    </div>
 
-    <label for="email">EMAIL</label>
-    <input  
-      id="email"
-      type="text" />
-    <span id="email-error"></span>
-
-    <label for="phone">PHONE</label>
-    <input  
-      id="phone"
-      type="tel" />
-    <span id="phone-error"></span>
-
-    <label for="password">PASSWORD</label>
-    <input  
-      id="password"
-      type="text" />
-    <span id="password-error"></span>
-
-    <div class="password_strenght">
-      <div>
-        <label>Password strength:</label>
-        <span id="password_strength-msg"></span>
+    <div class="pass__word">
+      <label for="password">PASSWORD</label>
+      <input id="password" type="text" />
+      <span id="password-error">.</span>
+      
+      
+      <div class="password_strenght">
+        <div>
+          <label>Password strength:</label>
+          <span id="password_strength-msg">.</span>
+        </div>
       </div>
     </div>
 
-    <label for="password-confirm">CONFIRM PASSWORD</label>
-    <input  
+    <div class="password__confirm">
+      <label for="password-confirm">CONFIRM PASSWORD</label>
+      <input  
       id="password-confirm"
       type="text" />
-    <span id="password-confirm-error"></span>
-
+      <span id="password-confirm-error">.</span>
+    </div>
+    
+    
   
     <input 
       type="submit" 

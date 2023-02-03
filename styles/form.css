@@ -1,11 +1,29 @@
 
+.the-form {
+    font-family: helvetica, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 1em 2em;
+    display: grid;
+    grid-row: auto auto;
+    grid-template-areas:
+    "first__name last__name"
+    "e__mail phone__number"
+    "pass__word password__confirm"; 
+}
+
+.first__name {
+  grid-area: first__name;
+}
+.last__name {
+  grid-area: last__name;
+}
+
+
 .input_invalid {
-  border-color: red;
-  border-color: red;
+  border: 2px solid red;
 }
 .input_valid {
-  border-color: red;
-  border-color: green;
+  /* border-color: green; */
+  border: 2px solid green;
 }
 
 label {
@@ -17,8 +35,11 @@ input {
   border-radius: 5px;
   border-width: 1px;
   border-style: solid;
+  font-size: 16px;
+  width: 60%;
 }
 span {
+  visibility: hidden;
   font-size: .9em;
   color:red;
  }

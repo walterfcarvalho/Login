@@ -54,9 +54,10 @@ const check_input = (input, span, regex, errorMsg) => {
     span.innerText = errorMsg;
     input.classList.add('input_invalid');
     input.classList.remove('input_valid');
+    span.style.visibility = "visible";
     return false;
   }
-  span.innerText = " ";
+  span.style.visibility = "hidden";
   input.classList.add('input_valid');
   input.classList.remove('input_invalid');
   return true;

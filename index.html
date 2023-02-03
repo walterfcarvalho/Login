@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./js/form-validation.js" defer></script>
+</head>
+<body class="container">
+
+
+<div class="logo">
+
+</div>
+
+<div class="login">
+  <div class="panel-top">
+    top
+  </div>
+
+  <form id="form" class="the-form">
+    <label for="first-name">FIRST NAME</label>
+    <input 
+      id="first-name"
+      type="text" 
+    />
+    <span id="first-name-error"> </span>
+    
+    <label for="last-name">LAST NAME</label>
+    <input  
+      id="last-name"
+      type="text" />
+    <span id="last-name-error"></span>
+
+    <label for="email">EMAIL</label>
+    <input  
+      id="email"
+      type="text" />
+    <span id="email-error"></span>
+
+    <label for="phone">PHONE</label>
+    <input  
+      id="phone"
+      type="tel" />
+    <span id="phone-error"></span>
+
+    <label for="password">PASSWORD</label>
+    <input  
+      id="password"
+      type="text" />
+    <span id="password-error"></span>
+
+    <div class="password_strenght">
+      <div>
+        <label>Password strength:</label>
+        <span id="password_strength-msg"></span>
+      </div>
+    </div>
+
+    <label for="password-confirm">CONFIRM PASSWORD</label>
+    <input  
+      id="password-confirm"
+      type="text" />
+    <span id="password-confirm-error"></span>
+
+  
+    <input 
+      type="submit" 
+      value="Submit"
+      ="valideForm(event)"
+    >
+  </form>
+  <div class="panel-bottom">
+    botton
+  </div>
+</div>
+
+  
+</body>
+</html>

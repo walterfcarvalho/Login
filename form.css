@@ -1,0 +1,28 @@
+.input_invalid {
+  border-color: red;
+  border-color: red;
+}
+.input_valid {
+  border-color: red;
+  border-color: green;
+}
+
+label {
+  display: block
+}
+
+input {
+  display: block;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+}
+span {
+  font-size: .9em;
+  color:red;
+ }
+
+ progress {
+  color:blue;
+  background: red;
+ }

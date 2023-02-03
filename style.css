@@ -1,0 +1,45 @@
+@import url("./styles/form.css");
+
+:root {
+  --color-gray:#F1F2F3;
+  --color-white:#FFFFFF;
+  --border-degrade-bottom:(0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+);
+}
+
+
+.container {
+  margin:0;
+  display: grid;
+  grid-template-areas: "logo login";
+  grid-template-columns: auto auto;
+  grid-template-rows: 100vh;
+  grid-template-columns: 35% 65%;
+}
+.logo {
+  background-image: url( './images/logo.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.login {
+  grid-area: login;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 30% 40% 30%;
+}
+.panel-top, .panel-bottom {  
+  background-color: var(--color-gray) ;
+}
+.panel-top {
+
+}
+/* .panel-bottom {
+  grid-area: panel-bottom;
+  background-color: var(--color-white);
+} */
+.the-form { 
+  /* grid-area: the-form; */
+  background-color: var(--color-white);
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: -2px -4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

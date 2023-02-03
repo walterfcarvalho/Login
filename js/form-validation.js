@@ -8,7 +8,9 @@ const spanEmail = document.getElementById("email-error");
 const inputPhone = document.getElementById("phone");
 const spanPhone = document.getElementById("phone-error");
 const inputPwd = document.getElementById("password");
+const spanPsw = document.getElementById("password-error");
 const inputPwdConfirm = document.getElementById("password-confirm");
+const spanPwdConfirm = document.getElementById("password-error");
 const pswStrength = document.getElementById("pwd_strength");
 const pswStrengthMsg = document.getElementById("pwd_strength_msg");
 
@@ -41,35 +43,32 @@ const validar = (e) => {
   console.log(target.id);
 }
 
-myForm.addEventListener('submit', (e) => {
-  let okProceed = true;
-  e.preventDefault();
 
-  if (!check_first_name()) okProceed = false;
-  if (!check_last_name()) okProceed = false;
-  if (!check_email()) okProceed = false;
-  if (!check_phone()) okProceed = false;
-  
-  return false;
-});
+const change_input_display = (input, span, errorMsg) => {
 
-const display_input_error = (input, span, regex, errorMsg) => {
-
-  if (!regex.test(input.value)) {
+  if (errorMsg) {
     span.innerText = errorMsg;
     input.classList.add('input_invalid');
     input.classList.remove('input_valid');
     span.style.visibility = "visible";
+  } else {
+    span.style.visibility = "hidden";
+    input.classList.add('input_valid');
+    input.classList.remove('input_invalid');  
+  }
+}
+
+const check_input = (input, span, regex, errorMsg) => {
+  if (!regex.test(input.value)) {
+    change_input_display(input, span, errorMsg);
     return false;
   }
-  span.style.visibility = "hidden";
-  input.classList.add('input_valid');
-  input.classList.remove('input_invalid');
+  change_input_display(input, span, "");
   return true;
 }
 
 const check_first_name = () => {
-  return display_input_error(
+  return check_input(
     inputFirstName,
     spanFirstName,
     /^(?=.{3,50}$)^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]*$/,
@@ -78,7 +77,7 @@ const check_first_name = () => {
 }
 
 const check_last_name = () => {
-  return display_input_error(
+  return check_input(
     inputLastName,
     spanLastName,
     /^(?=.{3,50}$)^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]*$/,
@@ -87,7 +86,7 @@ const check_last_name = () => {
 }
 
 const check_email = () => {
-  return display_input_error(
+  return check_input(
     inputEmail,
     spanEmail,
     /^(?=.{0,100}$)^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -96,7 +95,7 @@ const check_email = () => {
 }
 
 const check_phone = () => {
-  return display_input_error(
+  return check_input(
     inputPhone,
     spanPhone,
     /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -104,13 +103,11 @@ const check_phone = () => {
   );
 }
 
-const set_password_err = () => {
-
-}
-
 const setPassWordStrenght = () => {
   let score = 0;
   let passwd =  inputPwd.value;
+
+  change_input_display(inputPwd,spanPsw, "")
 
   if (passwd.length > 5 && passwd.length <= 25 ) {
     if( /[`˜!@#$%ˆ&*()_\-\\ \^ \$\*\+\?\.\(\)\|\{\}\[\]]/.test(passwd)) score ++;
@@ -132,13 +129,44 @@ const setPassWordStrenght = () => {
 }
 
 const check_password = () => {
-
-  if ( !setPassWordStrenght) {
+  let isPwdValid = true;
+  if (!setPassWordStrenght()) {
+    change_input_display(inputPwd,spanPsw,"Password should be stroger.")
+    isPwdValid = false;
+  } else {
+    change_input_display(inputPwd, spanPsw, " ")
+      
+    if ( inputPwd.value !== inputPwdConfirm.value ) {
+      change_input_display(inputPwd,spanPsw, "Passwords do not match.")
+      change_input_display(inputPwdConfirm, spanPwdConfirm, "Passwords do not match.")
+      isPwdValid = false;
+    } else {
+      change_input_display(inputPwd, spanPsw, "")
+      change_input_display(inputPwdConfirm, spanPwdConfirm, "")    
+    }
   }  
+  return isPwdValid;
 }
+
+
+myForm.addEventListener('submit', (e) => {
+  let okProceed = true;
+  e.preventDefault();
+
+  if (!check_first_name()) okProceed = false;
+  if (!check_last_name()) okProceed = false;
+  if (!check_email()) okProceed = false;
+  if (!check_phone()) okProceed = false;
+  if (!check_password()) okProceed = false;
+  
+  return false;
+});
+
 
 inputFirstName.addEventListener('blur', check_first_name);
 inputLastName.addEventListener('blur', check_last_name);
 inputEmail.addEventListener('blur', check_email);
 inputPhone.addEventListener('blur', check_phone);
 inputPwd.addEventListener('keyup', setPassWordStrenght );
+inputPwd.addEventListener('blur', setPassWordStrenght );
+inputPwdConfirm.addEventListener('blur', check_password );

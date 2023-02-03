@@ -24,7 +24,7 @@
 
     <div class="first__name">
       <label for="first-name">FIRST NAME</label>
-      <input id="first-name" type="text"/>
+      <input id="first-name" type="text" autofocus/>
       <span id="first-name-error">.</span>
     </div>
     
@@ -49,34 +49,23 @@
     </div>
 
     <div class="pass__word">
-      <label for="password">PASSWORD</label>
+      <label style="display:inline" for="password">PASSWORD</label>
+      
+      <div id="pwd_strength">
+       <strong>Strength:</strong>
+       <span id="pwd_strength_msg"></span>
+      </div>
+      
       <input id="password" type="text" />
       <span id="password-error">.</span>
-      
-      
-      <div class="password_strenght">
-        <div>
-          <label>Password strength:</label>
-          <span id="password_strength-msg">.</span>
-        </div>
-      </div>
     </div>
 
     <div class="password__confirm">
       <label for="password-confirm">CONFIRM PASSWORD</label>
-      <input  
-      id="password-confirm"
-      type="text" />
+      <input id="password-confirm" type="text" />
       <span id="password-confirm-error">.</span>
     </div>
-    
-    
-  
-    <input 
-      type="submit" 
-      value="Submit"
-      ="valideForm(event)"
-    >
+    <input type="submit" value="Submit">
   </form>
   <div class="panel-bottom">
     botton

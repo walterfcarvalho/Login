@@ -7,14 +7,15 @@ const inputEmail = document.getElementById("email");
 const spanEmail = document.getElementById("email-error");
 const inputPhone = document.getElementById("phone");
 const spanPhone = document.getElementById("phone-error");
-const inputPass = document.getElementById("password");
-const inputPassConfirm = document.getElementById("password-confirm");
-const pswStrength = document.getElementById("password_strength-msg");
+const inputPwd = document.getElementById("password");
+const inputPwdConfirm = document.getElementById("password-confirm");
+const pswStrength = document.getElementById("pwd_strength");
+const pswStrengthMsg = document.getElementById("pwd_strength_msg");
 
-const levels = {
+const LEVELS = {
   0: {
     color: '#E0E0DE',
-    msg: "Too shoot"
+    msg: "Too short"
   },
   1: {
     color: '#C92E28',
@@ -41,14 +42,18 @@ const validar = (e) => {
 }
 
 myForm.addEventListener('submit', (e) => {
+  let okProceed = true;
   e.preventDefault();
 
-  check_first_name();
-
+  if (!check_first_name()) okProceed = false;
+  if (!check_last_name()) okProceed = false;
+  if (!check_email()) okProceed = false;
+  if (!check_phone()) okProceed = false;
+  
   return false;
 });
 
-const check_input = (input, span, regex, errorMsg) => {
+const display_input_error = (input, span, regex, errorMsg) => {
 
   if (!regex.test(input.value)) {
     span.innerText = errorMsg;
@@ -64,7 +69,7 @@ const check_input = (input, span, regex, errorMsg) => {
 }
 
 const check_first_name = () => {
-  return check_input(
+  return display_input_error(
     inputFirstName,
     spanFirstName,
     /^(?=.{3,50}$)^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]*$/,
@@ -73,7 +78,7 @@ const check_first_name = () => {
 }
 
 const check_last_name = () => {
-  return check_input(
+  return display_input_error(
     inputLastName,
     spanLastName,
     /^(?=.{3,50}$)^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]*$/,
@@ -82,7 +87,7 @@ const check_last_name = () => {
 }
 
 const check_email = () => {
-  return check_input(
+  return display_input_error(
     inputEmail,
     spanEmail,
     /^(?=.{0,100}$)^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -91,7 +96,7 @@ const check_email = () => {
 }
 
 const check_phone = () => {
-  return check_input(
+  return display_input_error(
     inputPhone,
     spanPhone,
     /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
@@ -105,7 +110,7 @@ const set_password_err = () => {
 
 const setPassWordStrenght = () => {
   let score = 0;
-  let passwd =  inputPass.value;
+  let passwd =  inputPwd.value;
 
   if (passwd.length > 5 && passwd.length <= 25 ) {
     if( /[`˜!@#$%ˆ&*()_\-\\ \^ \$\*\+\?\.\(\)\|\{\}\[\]]/.test(passwd)) score ++;
@@ -113,22 +118,27 @@ const setPassWordStrenght = () => {
     if (/[A-Z]/.test(passwd)) score ++;
     if (/[0-9]/.test(passwd)) score ++;
 
-    pswStrength.innerText = levels[score].msg;
-    pswStrength.style.color = levels[score].color;
+    pswStrength.style.visibility = "visible";
+    pswStrengthMsg.style.visibility = "visible";
   } else {
-    pswStrength.innerText = levels[0].msg;
-    pswStrength.style.color = levels[0].color;
+    pswStrengthMsg.style.visibility = "hidden";
+    pswStrength.style.visibility = "hidden";
   }
+
+  pswStrengthMsg.innerText = LEVELS[score].msg;
+  pswStrengthMsg.style.color = LEVELS[score].color;
 
   return score > 2 ?  true : false;
 }
 
 const check_password = () => {
-  
+
+  if ( !setPassWordStrenght) {
+  }  
 }
 
 inputFirstName.addEventListener('blur', check_first_name);
 inputLastName.addEventListener('blur', check_last_name);
 inputEmail.addEventListener('blur', check_email);
 inputPhone.addEventListener('blur', check_phone);
-inputPass.addEventListener('keyup', setPassWordStrenght );
+inputPwd.addEventListener('keyup', setPassWordStrenght );
